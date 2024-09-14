@@ -9,8 +9,11 @@ class Result {
 
     public static long bioHazard(int n, List<Integer> allergic, List<Integer> poisonous) {
         HashMap<Integer, HashSet<Integer>> hashMap = new HashMap<>();
+        
         int index = 0;
+
         HashSet<Integer> set = null;
+
         for(int poison: poisonous) {
             if(hashMap.containsKey(poison)){
                 hashMap.get(poison).add(allergic.get(index));
