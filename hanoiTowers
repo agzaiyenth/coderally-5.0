@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import static java.lang.Math.*;
+
+public class Solution {
+
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        int ballCount = 1;
+        int T = input.nextInt();
+        int N = input.nextInt();
+
+            ArrayList <ArrayList<Integer>> mainList = new ArrayList<>();
+
+            //creation of the pegs
+            for(int i = 0; i < N; i++){
+                ArrayList <Integer> nestedList = new ArrayList<Integer>();
+                mainList.add(nestedList);
+            }
+
+            mainList.get(0).add(ballCount);
+            ballCount++;
+
+
+            // Assign balls to the pegs
+            while (ballCount <= T) {
+                boolean placed = false;  // Track if the current ball was placed
+
+                for (int i = 0; i < N; i++) {
+                    if (mainList.get(i).isEmpty()) {
+
+                        mainList.get(i).add(ballCount);
+                        placed = true;
+                        break;
+
+                    } else {
+                        int lastElement = mainList.get(i).get(mainList.get(i).size() - 1);
+                        int comparisonElement = lastElement + ballCount;
+                        int x = (int) Math.sqrt(comparisonElement);
+
+                        if (Math.pow(x, 2) == comparisonElement) {
+                            mainList.get(i).add(ballCount);
+                            placed = true;
+                            break;
+                        }
+                    }
+            }
+
+
+            if (!placed) {
+                break;
+            }
+
+            ballCount++;
+        }
+
+        int total = 0;
+
+            for (int j = 0; j < N; j++) {
+                int pegBallCount = mainList.get(j).size();
+                System.out.println("Peg " + (j + 1) + " has " + pegBallCount + " elements.");
+                total += pegBallCount;
+            }
+            System.out.println(total);
+
+    }
+
+
+}
+
