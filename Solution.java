@@ -19,7 +19,7 @@ class Result {
                 set.add(allergic.get(index));
                 hashMap.put(poison, set);
             }
-            index++;
+            index+=1;
         }
         int intervals = 0;
         List<Integer> sequence = new ArrayList<>();
